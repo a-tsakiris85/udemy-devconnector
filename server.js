@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 //DB Config
-var db = require("./config/keys").mongoURI;
+var db = process.env.MONGODB_URI || require("./config/keys").mongoURI;
 
 //Connect to mongoDB
 mongoose
@@ -31,6 +31,7 @@ app.use("/api/users", users);
 app.use("/api/profile", profile);
 app.use("/api/posts", posts);
 
+app.get("/", (req, res) => req.json({ hello: "helo" }));
 const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
