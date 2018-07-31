@@ -26,12 +26,17 @@ mongoose
   .then(() => console.log("MongoDB Connected"))
   .catch(err => console.log(err));
 
+//Passport middleware
+app.use(passport.initialize());
+
+//Passport Config
+require("./config/passport.js")(passport);
+
 //Use Routes from files on these routes.
 app.use("/api/users", users);
 app.use("/api/profile", profile);
 app.use("/api/posts", posts);
 
-app.get("/", (req, res) => res.json({ hello: "helo" }));
 const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
