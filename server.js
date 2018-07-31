@@ -1,5 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
+const passport = require("passport");
 
 const users = require("./routes/api/users");
 const profile = require("./routes/api/profile");
@@ -8,8 +10,12 @@ const posts = require("./routes/api/posts");
 //Create an express app
 const app = express();
 
+//Body Parser
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
 //DB Config
-var db = require("./config/keys").mongoURI;
+var db = process.env.MONGODB_URI || require("./config/keys").mongoURI;
 
 //Connect to mongoDB
 mongoose
@@ -19,8 +25,6 @@ mongoose
   )
   .then(() => console.log("MongoDB Connected"))
   .catch(err => console.log(err));
-//Sample Route~
-app.get("/", (req, res) => res.send("Hello"));
 
 //Use Routes from files on these routes.
 app.use("/api/users", users);
