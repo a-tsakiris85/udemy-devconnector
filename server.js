@@ -31,7 +31,7 @@ app.use("/api/users", users);
 app.use("/api/profile", profile);
 app.use("/api/posts", posts);
 
-app.get("/", (req, res) => req.json({ hello: "helo" }));
+app.get("/", (req, res) => res.json({ hello: "helo" }));
 const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
