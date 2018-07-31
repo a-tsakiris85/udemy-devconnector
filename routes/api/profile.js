@@ -1,0 +1,14 @@
+const express = require("express");
+
+const router = express.Router(); //use router instead of app
+
+// @route   GET api/profile/test
+// @desc    Tests profile route
+// @access  public
+router.get("/test", (req, res) => {
+  res.json({
+    msg: "Profile Test Message"
+  }); //automatic 200 status
+});
+
+module.exports = router;
