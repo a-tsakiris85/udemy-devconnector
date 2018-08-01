@@ -5,6 +5,8 @@ const router = express.Router(); //use router instead of app
 const User = require("../../models/User");
 const keys = require("../../config/keys");
 const validateRegisterInput = require("../../validation/register");
+const validateLoginInput = require("../../validation/login");
+
 const gravatar = require("gravatar");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");

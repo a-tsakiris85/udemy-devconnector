@@ -1,8 +1,6 @@
 const Validator = require("validator");
 const { isEmpty } = require("./is-empty.js");
 
-let is;
-
 module.exports = function validateLoginInput(data) {
   let errors = {};
 
