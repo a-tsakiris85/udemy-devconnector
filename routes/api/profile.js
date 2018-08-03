@@ -291,11 +291,12 @@ router.delete(
   (req, res) => {
     Profile.findOneAndRemove({ user: req.user.id })
       .then(profile => {
-        User.findOneAndRemove({ id: req.user.id }).then(user => {
+        User.findByIdAndRemove(req.user.id).then(user => {
           if (!user) {
             return res.status(404).json({ msg: "user not found" });
+          } else {
+            res.json({ success: true });
           }
-          res.json({ success: true });
         });
       })
       .catch(err => res.status(404).json({ success: "false" }));
